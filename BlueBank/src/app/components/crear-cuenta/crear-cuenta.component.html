@@ -1,0 +1,45 @@
+<form>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="inputEmail4">Primer Nombre *</label>
+        <input type="text" class="form-control" id="inputPrimerNombre" required="true">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputPassword4">Segundo Nombre</label>
+        <input type="text" class="form-control" id="inputSegundoNombre">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputEmail4">Primer Apellido *</label>
+        <input type="text" class="form-control" id="inputPrimerApellido" required="true">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputPassword4">Segundo Apellido</label>
+        <input type="text" class="form-control" id="inputSegundoApellido">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputAddress">Número Telefonico *</label>
+        <input type="number" class="form-control" id="inputTelefono" required="true">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputAddress2">Pin *</label>
+        <input type="password" class="form-control" id="inputContraseña" required="true">
+      </div>
+    </div>
+    <br>
+
+    <div class="text-center">
+      <button (click)="setCrearCuenta()" class="btn btn-primary">Crear Cuenta</button>
+    </div>
+
+    <div *ngIf="intentarCrearCuenta">
+      <div *ngIf="resCreacion > 1">
+        se ha creado la cuenta correctamente
+      </div>
+      <div *ngIf="resCreacion <= 0">
+        No se ha creado la cuenta
+      </div>
+    </div>
+  </form>

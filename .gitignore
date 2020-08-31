@@ -38,6 +38,8 @@ bower_components
 build/Release
 
 # Dependency directories
+BlueBank/node_modules
+BlueBank_Apis/node_modules
 node_modules/
 jspm_packages/
 
