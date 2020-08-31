@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "BlueBank"
+    }
+  },
+  "defaultProject": "BlueBank",
+  "cli": {
+    "analytics": false
+  }
 }

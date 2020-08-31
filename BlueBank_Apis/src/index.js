@@ -1,19 +1,23 @@
 const express = require('express');
 const app = express();
-const cliente = require('./routes/cliente');
-const conex = require('./database');
+const morgan = require('morgan');
+const routerClientes = require('./routes/clientes');
+const routerCuentas = require('./routes/cuenta');
 
-// Settings
-app.set('port', process.env.port || 3000)
+// settings
+app.set('port', process.env.PORT || 3000);
+app.set('json spaces', 2);
 
-// Middlewares
+// middleware
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//Routes
-app.use(cliente);
-app.use(conex);
+// router
+app.use('/api', routerClientes);
+app.use('/api', routerCuentas);
 
-//Starting the server
+// starting the server
 app.listen(app.get('port'), () => {
-    console.log('server on port', app.get('port'));
+    console.log('Servidor inicializado');
 });

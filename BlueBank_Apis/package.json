@@ -1,17 +1,21 @@
 {
-  "name": "BlueBank_Apis",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "morgan": "^1.10.0",
-    "mssql": "^6.2.1"
-  }
+    "name": "BlueBank_Apis",
+    "version": "1.0.0",
+    "description": "Apis para prueba tecnica Marcela Cuellar",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "morgan": "^1.10.0",
+        "mssql": "^6.2.1",
+        "tedious": "^9.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
 }
