@@ -14,12 +14,13 @@ routerClientes.get('/clientes', (req, res) => {
         var request = new sql.Request();
 
         // query to the database and get the records
-        request.query("select concat(primer_nombre,' ',segundo_nombre,' ',primer_apellido,' ',segungo_apellido) as nombre, documento from personas", function(err, result) {
+        request.execute("datosClientes", function(err, result) {
 
             if (err) console.log(err)
 
             // send records as a response
-            res.json(result.recordsets);
+            console.log('Resultado: ' + result.recordset);
+            res.json(result);
 
         });
     });
@@ -48,15 +49,6 @@ routerClientes.get('/cliente/:cc', (req, res) => {
 
         });
     });
-});
-
-routerClientes.post('/cliente', (req, res) => {
-    console.log(req.body);
-    let respuesta = {
-        "codigo": 0,
-        "mensaje": "insertada correctamente"
-    }
-    res.json(respuesta);
 });
 
 module.exports = routerClientes;

@@ -9,7 +9,8 @@ export class CrearCuentaService {
   constructor(protected http: HttpClient) { }
 
   registrarCuenta() {
-    this.http.get('https://randomuser.me/api/?results=25').subscribe(data => {console.log(data);
+    this.http.get('https://randomuser.me/api/?results=25').subscribe(data => {
+      console.log(data);
     });
   }
 }
