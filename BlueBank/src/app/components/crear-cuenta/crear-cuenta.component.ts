@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CrearCuentaService } from '../../services/crear-cuenta.service';
+import { CrearCuentaService } from '../../services/crear-cuenta.service';
+import { Cuenta } from '../../models/Cuenta';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -8,14 +10,41 @@ import {CrearCuentaService } from '../../services/crear-cuenta.service';
 })
 export class CrearCuentaComponent implements OnInit {
 
-   resCreacion: number;
-   intentarCrearCuenta: boolean;
+  // resCreacion: number;
+  //intentarCrearCuenta: boolean;
+  //users: any;
+  cliente: Cuenta = {
+    primerNombre: '',
+    segundoNombre: '',
+    primerApellido: '',
+    segundoApellido: '',
+    documento: '',
+    telefono: '',
+    pin: '',
+    saldo: 0
+  }
 
-   constructor(private crearCuentaService: CrearCuentaService) {
-     this.intentarCrearCuenta = false;
-   }
 
-  setCrearCuenta() {
+  constructor(private crearCuentaService: CrearCuentaService) {
+   
+   
+    // this.intentarCrearCuenta = false;
+  }
+
+
+  setCrearCuenta(){
+    this.crearCuentaService.registrarCuenta(this.cliente)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => console.error(err)
+      )
+  }
+
+
+
+/*  setCrearCuenta() {
     this.intentarCrearCuenta = true;
     //this.resCreacion = this.crearCuentaService.registrarCuenta();
 
@@ -23,10 +52,22 @@ export class CrearCuentaComponent implements OnInit {
     console.log('intentarCrearCuenta ' + this.intentarCrearCuenta);
     console.log('resCreacion ' + this.resCreacion);
 
-    return this.crearCuentaService.registrarCuenta(); 
-  }
+    this.crearCuentaService.obtenerListadoClientes().subscribe(
+      (data) => { // Success
+        console.log('Exito al llamar al servicio');
+        console.log('datos: ' + data);
+        this.users = data;
+      },
+      (error) => {
+        console.log('error al llamar al servicio');
+        console.error(error);
+      }
+    );
 
-  ngOnInit(): void{
+    // return this.crearCuentaService.registrarCuenta(); 
+  } */
+
+  ngOnInit(): void {
   }
 
 }
