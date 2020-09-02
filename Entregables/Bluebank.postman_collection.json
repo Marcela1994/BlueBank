@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "d80a5a4e-2828-44d7-bc15-86b122551997",
+		"name": "Bluebank",
+		"description": "Pruebas tecnica marcela cuellar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar saldo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cuenta\": 3163474529,\r\n    \"pin\": 1234\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/cuenta/consultar",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"cuenta",
+						"consultar"
+					]
+				},
+				"description": "API que me permite consultar el saldo de una cuenta"
+			},
+			"response": []
+		},
+		{
+			"name": "Retirar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"valor\": 10,\r\n    \"cuenta\": 3163474529,\r\n    \"pin\": 1234\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/cuentaRetiro",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"cuentaRetiro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listado clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/clientes",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pnombre\": \"Carlos\", \r\n    \"snombre\": \"Mario\", \r\n    \"papellido\": \"Diaz\", \r\n    \"sapellido\": \"Machuca\", \r\n    \"documento\": \"9876543\", \r\n    \"nrocuenta\": \"3129867736\", \r\n    \"clave\": \"0000\", \r\n    \"saldo\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/cuenta",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"cuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consignacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"valor\": 100,\r\n    \"cuenta\": 3163474529\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/cuentaConsignacion",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"cuentaConsignacion"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
