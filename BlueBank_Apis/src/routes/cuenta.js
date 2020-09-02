@@ -111,7 +111,7 @@ const {valor, cuenta} = req.body;
             // send records as a response
             logger.debug("GET -> /api/cuentaConsignacion");
             logger.debug("Se realizo la consignacion a la cuenta correctamente...");
-            res.json(result);
+            res.json(result.recordsets);
         });
     });
 });
