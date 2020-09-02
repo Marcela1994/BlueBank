@@ -1,18 +1,19 @@
 <form>
     <div class="form-group col-md-6">
       <label for="inputCuenta">Número De Cuenta *</label>
-      <input type="number" class="form-control" id="inputCuenta" required="true">
+      <input type="number" [(ngModel)]="retiro.cuenta" class="form-control" name="inputCuenta" required="true">
     </div>
     <div class="form-group col-md-6">
       <label for="inputContrasenia">Pin *</label>
-      <input type="password" class="form-control" id="inputContrasenia" required="true">
+      <input type="password" [(ngModel)]="retiro.clave" class="form-control" name="inputContrasenia" required="true">
     </div>
     <div class="form-group col-md-6">
       <label for="inputValorConsignar">Valor a Retirar *</label>
-      <input type="number" class="form-control" id="inputValorConsignar" required="true">
+      <input type="number" [(ngModel)]="retiro.valor" class="form-control" name="inputValorConsignar" required="true">
     </div>
   <br>
   <div class="text-center">
-    <button type="submit" class="btn btn-primary">Realizar Retiro</button>
+    <button (click)="setRetiro()" type="submit" class="btn btn-primary">Realizar Retiro</button>
   </div>
 </form>
+

@@ -25,47 +25,29 @@ export class CrearCuentaComponent implements OnInit {
   }
 
 
-  constructor(private crearCuentaService: CrearCuentaService) {
-   
+  constructor(private crearCuentaService: CrearCuentaService, private router: Router, private activatedRoute: ActivatedRoute) {
    
     // this.intentarCrearCuenta = false;
   }
 
+  
 
   setCrearCuenta(){
     this.crearCuentaService.registrarCuenta(this.cliente)
       .subscribe(
         res => {
+          console.log('Crear cuenta');
+          console.log('Datos enviados ' + this.cliente.primerNombre);
+          console.log('Datos enviados ' + this.cliente.segundoNombre);
+          console.log('Datos enviados ' + this.cliente.primerApellido);
+          console.log('Datos enviados ' + this.cliente.segundoApellido);
           console.log(res);
+          this.router.navigate(['/clientes']);
         },
         err => console.error(err)
       )
+
   }
-
-
-
-/*  setCrearCuenta() {
-    this.intentarCrearCuenta = true;
-    //this.resCreacion = this.crearCuentaService.registrarCuenta();
-
-    console.log('Llamado al servicio crear cuenta');
-    console.log('intentarCrearCuenta ' + this.intentarCrearCuenta);
-    console.log('resCreacion ' + this.resCreacion);
-
-    this.crearCuentaService.obtenerListadoClientes().subscribe(
-      (data) => { // Success
-        console.log('Exito al llamar al servicio');
-        console.log('datos: ' + data);
-        this.users = data;
-      },
-      (error) => {
-        console.log('error al llamar al servicio');
-        console.error(error);
-      }
-    );
-
-    // return this.crearCuentaService.registrarCuenta(); 
-  } */
 
   ngOnInit(): void {
   }

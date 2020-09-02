@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {ConsignacionComponent} from './components/consignacion/consignacion.component';
 import {ConsultaComponent} from './components/consulta/consulta.component';
 import {RetiroComponent} from './components/retiro/retiro.component';
+import {ListarClientesComponent} from './components/listar-clientes/listar-clientes.component';
 
 const routes: Routes = [
   { path: 'cuenta', component: CrearCuentaComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'consignacion', component: ConsignacionComponent},
   { path: 'consulta', component: ConsultaComponent},
   { path: 'retiro', component: RetiroComponent},
+  { path: 'clientes', component: ListarClientesComponent},
   { path: '**', component: BodyComponent},
 ];
 

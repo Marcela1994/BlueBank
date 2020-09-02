@@ -12,7 +12,10 @@ import { CrearCuentaComponent } from './components/crear-cuenta/crear-cuenta.com
 import { ConsignacionComponent } from './components/consignacion/consignacion.component';
 import { RetiroComponent } from './components/retiro/retiro.component';
 import { ConsultaComponent } from './components/consulta/consulta.component';
+import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
+
 import { CrearCuentaService } from './services/crear-cuenta.service';
+import { ClientesService } from './services/clientes.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { CrearCuentaService } from './services/crear-cuenta.service';
     CrearCuentaComponent,
     ConsignacionComponent,
     RetiroComponent,
-    ConsultaComponent
+    ConsultaComponent,
+    ListarClientesComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,7 @@ import { CrearCuentaService } from './services/crear-cuenta.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [CrearCuentaService],
+  providers: [CrearCuentaService, ClientesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

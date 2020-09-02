@@ -4,7 +4,8 @@
     "description": "Apis para prueba tecnica Marcela Cuellar",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "prod": "npm install && npm run-script start",
+        "start": "node ./src/index.js"
     },
     "keywords": [],
     "author": "",
