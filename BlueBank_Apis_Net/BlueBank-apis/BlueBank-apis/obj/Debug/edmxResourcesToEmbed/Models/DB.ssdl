@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlueBankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cuentas">
+    <Key>
+      <PropertyRef Name="nro_cuenta" />
+    </Key>
+    <Property Name="documento" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="nro_cuenta" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="clave" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="saldo" Type="numeric" Precision="9" Scale="2" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BlueBank.dbo.historico_movimientos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="historico_movimientos">
+    <Key>
+      <PropertyRef Name="documento" />
+      <PropertyRef Name="nro_cuenta" />
+      <PropertyRef Name="id_movimiento" />
+      <PropertyRef Name="fecha" />
+    </Key>
+    <Property Name="documento" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="nro_cuenta" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="id_movimiento" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="movimientos">
+    <Key>
+      <PropertyRef Name="id_movimiento" />
+    </Key>
+    <Property Name="id_movimiento" Type="int" Nullable="false" />
+    <Property Name="nombre_mvto" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="personas">
+    <Key>
+      <PropertyRef Name="documento" />
+    </Key>
+    <Property Name="primer_nombre" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="segundo_nombre" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="primer_apellido" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="segungo_apellido" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="documento" Type="varchar" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="fk_cuentas_movimientos">
+    <End Role="cuentas" Type="Self.cuentas" Multiplicity="1" />
+    <End Role="historico_movimientos" Type="Self.historico_movimientos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cuentas">
+        <PropertyRef Name="nro_cuenta" />
+      </Principal>
+      <Dependent Role="historico_movimientos">
+        <PropertyRef Name="nro_cuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_movimientos_historico">
+    <End Role="movimientos" Type="Self.movimientos" Multiplicity="1" />
+    <End Role="historico_movimientos" Type="Self.historico_movimientos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movimientos">
+        <PropertyRef Name="id_movimiento" />
+      </Principal>
+      <Dependent Role="historico_movimientos">
+        <PropertyRef Name="id_movimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_personas_cuentas">
+    <End Role="personas" Type="Self.personas" Multiplicity="1" />
+    <End Role="cuentas" Type="Self.cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="documento" />
+      </Principal>
+      <Dependent Role="cuentas">
+        <PropertyRef Name="documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_personas_movimientos">
+    <End Role="personas" Type="Self.personas" Multiplicity="1" />
+    <End Role="historico_movimientos" Type="Self.historico_movimientos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="documento" />
+      </Principal>
+      <Dependent Role="historico_movimientos">
+        <PropertyRef Name="documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="consignacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cuenta" Type="varchar" Mode="In" />
+    <Parameter Name="valor" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="consultaSaldo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cuenta" Type="varchar" Mode="In" />
+    <Parameter Name="pin" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="datosClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="insertarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pNombre" Type="varchar" Mode="In" />
+    <Parameter Name="sNombre" Type="varchar" Mode="In" />
+    <Parameter Name="pApellido" Type="varchar" Mode="In" />
+    <Parameter Name="sApellido" Type="varchar" Mode="In" />
+    <Parameter Name="documento" Type="varchar" Mode="In" />
+    <Parameter Name="nroCta" Type="varchar" Mode="In" />
+    <Parameter Name="clave" Type="varchar" Mode="In" />
+    <Parameter Name="saldo" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="retiro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cuenta" Type="varchar" Mode="In" />
+    <Parameter Name="valor" Type="numeric" Mode="In" />
+    <Parameter Name="pin" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="BlueBankModelStoreContainer">
+    <EntitySet Name="cuentas" EntityType="Self.cuentas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="movimientos" EntityType="Self.movimientos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="personas" EntityType="Self.personas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="historico_movimientos" EntityType="Self.historico_movimientos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [historico_movimientos].[documento] AS [documento], 
+    [historico_movimientos].[nro_cuenta] AS [nro_cuenta], 
+    [historico_movimientos].[id_movimiento] AS [id_movimiento], 
+    [historico_movimientos].[fecha] AS [fecha]
+    FROM [dbo].[historico_movimientos] AS [historico_movimientos]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_cuentas_movimientos" Association="Self.fk_cuentas_movimientos">
+      <End Role="cuentas" EntitySet="cuentas" />
+      <End Role="historico_movimientos" EntitySet="historico_movimientos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_movimientos_historico" Association="Self.fk_movimientos_historico">
+      <End Role="movimientos" EntitySet="movimientos" />
+      <End Role="historico_movimientos" EntitySet="historico_movimientos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_personas_cuentas" Association="Self.fk_personas_cuentas">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="cuentas" EntitySet="cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_personas_movimientos" Association="Self.fk_personas_movimientos">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="historico_movimientos" EntitySet="historico_movimientos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

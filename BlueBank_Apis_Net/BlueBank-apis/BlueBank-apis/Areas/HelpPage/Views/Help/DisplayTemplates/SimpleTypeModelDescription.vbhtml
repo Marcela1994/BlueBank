@@ -1,0 +1,3 @@
+@Imports BlueBank_apis.Areas.HelpPage.ModelDescriptions
+@ModelType SimpleTypeModelDescription
+@Model.Documentation
