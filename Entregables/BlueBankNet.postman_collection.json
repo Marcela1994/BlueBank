@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "ddf809fa-73c4-4486-a99d-449eb2534d70",
+		"name": "BlueBankNet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listado clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44372/api/persona",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44372",
+					"path": [
+						"api",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar cliente por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44372/api/persona/1023900",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44372",
+					"path": [
+						"api",
+						"persona",
+						"1023900"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificar cliente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"primer_nombre\": \"jose\",\r\n        \"segundo_nombre\": \"manuel\",\r\n        \"primer_apellido\": \"seijas\",\r\n        \"segundo_apellido\": \"rojas\",\r\n        \"documento\": \"10101020\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44372/api/persona/10101020",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44372",
+					"path": [
+						"api",
+						"persona",
+						"10101020"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consignacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n    \"cuenta\": \"3120001122\",\r\n    \"valor\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44372/api/consignacion",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44372",
+					"path": [
+						"api",
+						"consignacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"primer_nombre\": \"blanca\",\r\n        \"segundo_nombre\": \"elisabeth\",\r\n        \"primer_apellido\": \"bustacara\",\r\n        \"segundo_apellido\": \"porras\",\r\n        \"documento\": \"12345678\",\r\n        \"nro_cuenta\": \"310123123\",\r\n        \"clave\": \"1010\",\r\n        \"saldo\": 1000\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44372/api/cuenta",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44372",
+					"path": [
+						"api",
+						"cuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retirar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cuenta\": \"310123123\",\r\n    \"valor\": 200,\r\n    \"pin\": \"1010\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://blueapisnet.azurewebsites.net/api/retiro",
+					"protocol": "https",
+					"host": [
+						"blueapisnet",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"retiro"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
