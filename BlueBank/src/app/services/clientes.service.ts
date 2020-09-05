@@ -10,7 +10,7 @@ export class ClientesService {
   constructor(protected http: HttpClient) { }
 
   consultarClientes() {
-    return this.http.get('https://bluebankapis.azurewebsites.net/api/clientes');
+    return this.http.get('https://localhost:44372/api/persona');
   }
 
   consignacion(cuenta: string, valor: number) {
