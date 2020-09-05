@@ -10,6 +10,8 @@ export class ConsignacionComponent implements OnInit {
 
   cuenta: string;
   valor: number;
+  respuesta: any = [];
+  mensaje: string;
 
   constructor(private clienteService: ClientesService) { }
 
@@ -19,6 +21,8 @@ export class ConsignacionComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res);
+        this.respuesta = res;
+        this.mensaje= "Se ha consignado a " + this.respuesta[0].nombre +" "+ this.respuesta[0].apellido + " a la cuenta " +this.respuesta[0].numeroDeCuenta+ " el valor de "+ " "+this.valor;
       },
       err => console.error(err)
     )

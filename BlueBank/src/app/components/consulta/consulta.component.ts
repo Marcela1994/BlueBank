@@ -12,6 +12,8 @@ export class ConsultaComponent implements OnInit {
   pin: string;
   saldo :string;
 
+  respuesta: any = [];
+
 
   constructor(private clienteService: ClientesService) { }
 
@@ -20,8 +22,8 @@ export class ConsultaComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res);
-        console.log("respuesta saldo: " + res.saldoActual);
-        this.saldo = res.saldoActual;
+        this.respuesta = res; 
+        this.saldo =  "Su saldo es:  " + this.respuesta[0].saldoActual;
       },
       err => console.error(err)
     )

@@ -15,6 +15,8 @@ export class RetiroComponent implements OnInit {
     valor: 0
   };
   
+  respuesta: any = [];
+  mensaje: string;
 
   constructor(private clienteService: ClientesService) { }
 
@@ -27,7 +29,9 @@ export class RetiroComponent implements OnInit {
 
       res => {
         console.log('Llamado exitoso a API retirar');
+        this.respuesta = res;
         console.log(res);
+        this.mensaje = this.respuesta[0].mensaje;
       },
       err => console.error(err)
     )
