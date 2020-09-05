@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="blueapisnet" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\BlueBank\\BlueBank\\BlueBank_Apis_Net\\BlueBank-Apis\\BlueBank-Apis\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

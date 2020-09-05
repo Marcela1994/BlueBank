@@ -13,17 +13,18 @@ export class CrearCuentaService {
   registrarCuenta(cuenta: Cuenta) {
     
     let request = {
-      "pnombre": cuenta.primerNombre, 
-      "snombre": cuenta.segundoNombre, 
-      "papellido": cuenta.primerApellido, 
-      "sapellido": cuenta.segundoApellido, 
+      "primer_nombre": cuenta.primerNombre, 
+      "segundo_nombre": cuenta.segundoNombre, 
+      "primer_apellido": cuenta.primerApellido, 
+      "segundo_apellido": cuenta.segundoApellido, 
       "documento": cuenta.documento, 
-      "nrocuenta": cuenta.telefono, 
+      "nro_cuenta": cuenta.telefono, 
       "clave": cuenta.pin, 
       "saldo": cuenta.saldo
   }
+  console.log(request);
 
-    return this.http.post('https://bluebankapis.azurewebsites.net/api/cuenta', request);
+    return this.http.post('https://blueapisnet.azurewebsites.net/api/cuenta', request);
   }
 }
 
