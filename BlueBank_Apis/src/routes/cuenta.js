@@ -9,7 +9,7 @@ log4js.configure({
     appenders: { cuentas: { type: "file", filename: "cuentas.log" } },
     categories: { default: { appenders: ["cuentas"], level: "debug" } }
 });
-logger.level = "debug";
+logger.level = "fatal";
 
 //Insertar un nuevo cliente
 routerCuentas.post('/cuenta', (req, res) => {

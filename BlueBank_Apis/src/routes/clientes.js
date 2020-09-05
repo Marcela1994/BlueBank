@@ -10,7 +10,7 @@ log4js.configure({
     appenders: { clientes: { type: "file", filename: "clientes.log" } },
     categories: { default: { appenders: ["clientes"], level: "debug" } }
 });
-logger.level = "debug";
+logger.level = "fatal";
 
 
 routerClientes.get('/clientes', (req, res) => {
