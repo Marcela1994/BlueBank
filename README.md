@@ -1,2 +1,2 @@
 # BlueBank
-Prueba técnica de ingreso Marcela Cuellar
+Proyecto BlueBank Marcela Cuellar
